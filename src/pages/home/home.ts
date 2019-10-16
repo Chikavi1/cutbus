@@ -35,6 +35,7 @@ cerrar_sesion(){
   this.navCtrl.push(LoginPage);
   localStorage.removeItem("clave");
   localStorage.removeItem("nombre");
+  localStorage.removeItem("id_ubicacion");
 }
   irRuta(ruta){
   	this.navCtrl.push(RutaPage,{ruta: ruta});

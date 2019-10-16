@@ -40,6 +40,7 @@ export class UbicacionProvider {
     return this.afDB.doc('usuarios/' + record_id).delete();
   }
 
+
   iniciarGeoLocalizacion() {
 
     this.geolocation.getCurrentPosition().then((resp) => {

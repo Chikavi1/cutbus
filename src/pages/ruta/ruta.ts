@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { UbicacionProvider } from '../../providers/ubicacion/ubicacion';
 import { Observable } from 'rxjs/Observable';
+
 import swal from 'sweetalert';
 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -144,20 +145,23 @@ mostrar_input(){
   	}
 
   crear_usuario(modelo){
+  	this.geolocation.getCurrentPosition().then((resp) => {
+	    this.lat =  resp.coords.latitude;
+	    this.lng = resp.coords.longitude;
+	  });
   	 let record = {};
   	 let data = new Date();
   	 let hora = this.tConvert(data.getHours()+":"+data.getMinutes());
 
 
-
-     record['nombre'] = "alumno1";
+     record['nombre'] = localStorage.getItem("nombre");
      record['horario'] = hora;
-     record['lat'] = 20.615705;
-     record['lng'] = -103.316843;
+     record['lat'] = this.lat;
+     record['lng'] = this.lng;
+  	 
      record['modelo'] = modelo;
 	   	this._ubicacionProv.crear_usuario(record).then(resp=>{
 	   	 });
-	   	//this._ubicacionProv.iniciarGeoLocalizacion();
   }
 
 infomarket(camion){
