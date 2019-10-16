@@ -1,0 +1,50 @@
+<ion-header translucent="true" no-border>
+  <ion-navbar color=‘light’ transparent >
+    <ion-title><span  style="color:#17202F !important;">{{ruta}} </span></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen >
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" style="position: relative;top:-4.5em;max-height: auto;">
+  <agm-marker *ngFor="let camion of camiones"
+  	 [latitude]="camion.lat" [longitude]="camion.lng" 
+    [iconUrl]="icon"
+    (markerClick)="infomarket(camion)"></agm-marker>
+</agm-map>
+<div class="row">
+  <ion-col></ion-col>
+  <ion-col>
+    <button ion-button color="home" round  (click)="changename()" style="position: relative;top:-8.0em">{{valorboton}}</button>
+  </ion-col>
+  <ion-col></ion-col>
+
+<!-- <button ion-button color="primary" round (click)="infomarket()" style="position: relative;right: -5em;top:-6.3em">Eliminar</button> -->
+</div>
+
+<div style="position: relative;top:-7em;">
+  <div *ngIf="!modelo" text-center style="position:relative;top:-1em;">
+    <span style="color:#17202F;font-size:.9em;">¡Hola!</span>
+    <h4>{{nombre_user}}</h4>
+    <p ><strong>haz click en el icono para saber su información.</strong></p>
+  </div>
+  <div *ngIf="modelo"text-center>
+    <ion-row>
+       <ion-col>
+        <ion-icon name="person" style="zoom:1.32;"></ion-icon>
+        <p><strong>{{nombre}}</strong></p>
+      </ion-col>
+
+      <ion-col>
+        <ion-icon name="bus" style="zoom:1.32;"></ion-icon>
+        <p><strong>{{modelo}}</strong></p>
+      </ion-col>
+
+      <ion-col>
+        <ion-icon name="time" style="zoom:1.32;"></ion-icon>
+        <p><strong>{{horario}}</strong></p>
+      </ion-col>
+    </ion-row>
+    <p style="position: relative;top:-1.5em;color:red;" >Reportar</p>
+  </div>
+</div>
+</ion-content>
