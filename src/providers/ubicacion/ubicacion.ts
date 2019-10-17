@@ -42,8 +42,11 @@ export class UbicacionProvider {
 
 
   iniciarGeoLocalizacion() {
-
-    this.geolocation.getCurrentPosition().then((resp) => {
+     var posOptions = {
+             enableHighAccuracy: true ,
+             timeout:4500,
+         };  
+    this.geolocation.getCurrentPosition(posOptions).then((resp) => {
 
       this.afDB.doc('usuarios/' + localStorage.getItem("id_ubicacion")).update({
         lat: resp.coords.latitude,
@@ -57,7 +60,7 @@ export class UbicacionProvider {
        //              clave: this._usuarioProv.clave
        //            });
 
-      return this.geolocation.watchPosition()
+      return this.geolocation.watchPosition(posOptions)
               .subscribe((data) => {
                   // data can be a set of coordinates, or an error (if an error occurred).
                   // data.coords.latitude
