@@ -27,10 +27,14 @@ export class LoginPage {
   }
 
   login(){
+    var element = <HTMLInputElement> document.getElementById("login");
+    element.disabled = true;
+
     this._usuarioProv.login(this.codigo,this.nip)
         .subscribe((data)=>{
           if(data._body == "incorrecto"){
             console.log("error");
+            element.disabled = false;
             this.mostrar_mensaje("Error","Tus datos estan mal.","error");
           }else{
             this.mostrar_mensaje("¡Hola!",data._body,"success");
@@ -52,8 +56,5 @@ export class LoginPage {
     }
       });
     }
-
-
-
 
 }

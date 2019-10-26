@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 
+
+import { FormPage } from '../pages/form/form';
+
 @Component({
   templateUrl: 'app.html'
 })

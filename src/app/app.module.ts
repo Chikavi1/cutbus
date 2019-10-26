@@ -6,12 +6,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-
+//pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import {RutaPage} from '../pages/ruta/ruta';
+import { FormPage } from '../pages/form/form';
 
+
+//providers
  import { UsuarioProvider } from '../providers/usuario/usuario';
 
 import { AgmCoreModule } from '@agm/core';
@@ -40,7 +43,8 @@ import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
     MyApp,
     HomePage,
     LoginPage,
-    RutaPage
+    RutaPage,
+    FormPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,8 @@ import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
     MyApp,
     HomePage,
     LoginPage,
-    RutaPage
+    RutaPage,
+    FormPage
   ],
   providers: [
     StatusBar,

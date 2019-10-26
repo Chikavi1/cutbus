@@ -5,7 +5,11 @@
 </ion-header>
 
 <ion-content fullscreen >
-  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" style="position: relative;top:-4.5em;max-height: auto;">
+  <agm-map [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="1" [maxZoom]="17" [zoom]="12" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
+    <agm-marker [latitude]="20.566187" [longitude]="-103.226863" 
+    [iconUrl]="cut"
+    ></agm-marker>
+
   <agm-marker *ngFor="let camion of camiones"
   	 [latitude]="camion.lat" [longitude]="camion.lng" 
     [iconUrl]="icon"

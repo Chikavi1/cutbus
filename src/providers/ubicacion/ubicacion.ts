@@ -4,30 +4,27 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { UsuarioProvider } from '../usuario/usuario';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @Injectable()
 export class UbicacionProvider {
 
-  taxista: AngularFirestoreDocument<any>;
-  private watch: Subscription;
-
+     posOptions = {
+             enableHighAccuracy: true,
+             timeout:2500,
+             maximumAge: 4000
+         };  
 
   constructor( private afDB: AngularFirestore,
                private geolocation: Geolocation,
                public _usuarioProv: UsuarioProvider) {
-    
-     this.taxista = afDB.doc(`/usuarios/${ localStorage.getItem("id_ubicacion") }`);
-
   }
 
-  getCamiones(){
- 
+  obtenerCamiones(){
+  console.log("PETICION get ");
   return this.afDB.collection('usuarios').snapshotChanges();
    //return this.afDB.collection('usuarios').valueChanges();
-  }
-
-  inicializarTaxista(){
-    this.taxista = this.afDB.doc(`/usuarios/${ this._usuarioProv.clave }`);
   }
 
   crear_usuario(record){
@@ -37,60 +34,35 @@ export class UbicacionProvider {
   }
 
   borrar_registro(record_id) {
+    console.log("PETICION delete");
     return this.afDB.doc('usuarios/' + record_id).delete();
   }
 
+  obtenerubicacion(){
 
-  iniciarGeoLocalizacion() {
-     var posOptions = {
-             enableHighAccuracy: true ,
-             timeout:4500,
-         };  
-    this.geolocation.getCurrentPosition(posOptions).then((resp) => {
-
-      this.afDB.doc('usuarios/' + localStorage.getItem("id_ubicacion")).update({
-        lat: resp.coords.latitude,
-        lng: resp.coords.longitude
-      });
-
-
-       // this.taxista.update({
-       //              lat: resp.coords.latitude,
-       //              lng: resp.coords.longitude,
-       //              clave: this._usuarioProv.clave
-       //            });
-
-      return this.geolocation.watchPosition(posOptions)
-              .subscribe((data) => {
-                  // data can be a set of coordinates, or an error (if an error occurred).
-                  // data.coords.latitude
-                  // data.coords.longitude
-                  this.afDB.doc('usuarios/' + localStorage.getItem("id_ubicacion")).update({
-                      lat: data.coords.latitude,
-                      lng: data.coords.longitude
-                    });
-
-                  // this.taxista.update({
-                  //   lat: data.coords.latitude,
-                  //   lng: data.coords.longitude,
-                  //   clave: this._usuarioProv.clave
-                  // });
-      });
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
-
+    return this.geolocation.getCurrentPosition();
   }
-
-  detenerUbicacion() {
-
-    try {
-      this.watch.unsubscribe();
-    }catch(e){
-      console.log(JSON.stringify(e));
-    }
+ 
+ creartiemporeal(){
+ 
+   return this.geolocation.watchPosition(this.posOptions);
+             
+ }
 
 
+  ubicacionTiempoReal() {
+
+      return this.geolocation.watchPosition(this.posOptions)
+              .subscribe((data) => {
+                     //console.log(data.coords);
+
+                      if(data.coords && localStorage.getItem("id_ubicacion")){
+                       this.afDB.doc('usuarios/' + localStorage.getItem("id_ubicacion")).update({
+                         lat: data.coords.latitude,
+                         lng: data.coords.longitude
+                       });
+
+                }})
   }
 
 }
