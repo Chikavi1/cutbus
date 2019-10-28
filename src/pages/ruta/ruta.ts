@@ -21,6 +21,9 @@ export class RutaPage {
   latitudInicial:number = 20.620608;
   longitudInicial:number = -103.305311;
 
+  latitudCutonala = 20.566187;
+  longitudCutonala = -103.226863;
+
   icon= "https://i.ibb.co/L16MJjx/icon-1.png";
   cut = "https://i.ibb.co/7k0b3KP/CUT-Sin-Fondo-2.png";
   camiones = [];
@@ -28,12 +31,13 @@ export class RutaPage {
   latitudUsuario;
   longitudUsuario;
 
+
+
   init = false;
 
   modelo;
   nombre;
   horario;
-
 
   valorboton = "";
   compartirubicacion;
@@ -60,12 +64,13 @@ export class RutaPage {
 		            lng: e.payload.doc.data()['lng'],
 		            lat: e.payload.doc.data()['lat'],
 		            modelo: e.payload.doc.data()['modelo'],
-		            horario: e.payload.doc.data()['horario']
+		            horario: e.payload.doc.data()['horario'],
+		            km: this.calculateDistance(e.payload.doc.data()['lng'],this.longitudCutonala,e.payload.doc.data()['lat'],this.latitudCutonala)+" KM"
 		          };
 		        })
           		//console.log(this.camiones);
 	    	  });
- 
+ 			
 				//si comparto la ubicacion o no	  
 			  if(localStorage.getItem("id_ubicacion")){
 			  	this.compartirubicacion = true;
@@ -130,13 +135,18 @@ ionViewDidLoad() {
 infomarket(camion){
   	this.modelo = camion.modelo;
   	this.nombre = camion.nombre;
-  	this.horario = camion.horario;
+  	this.horario = camion.horario;  	
   }
 
 
 
-
-
+calculateDistance(lon1, lon2, lat1, lat2){
+    let p = 0.017453292519943295;
+    let c = Math.cos;
+    let a = 0.5 - c((lat1-lat2) * p) / 2 + c(lat2 * p) *c((lat1) * p) * (1 - c(((lon1- lon2) * p))) / 2;
+    let dis = (12742 * Math.asin(Math.sqrt(a)));
+    return dis.toFixed(2);
+}
 
 
 }

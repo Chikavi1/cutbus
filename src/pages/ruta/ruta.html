@@ -5,15 +5,28 @@
 </ion-header>
 
 <ion-content fullscreen >
-  <agm-map [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="1" [maxZoom]="17" [zoom]="12" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
-    <agm-marker [latitude]="20.566187" [longitude]="-103.226863" 
+  <agm-map [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="11" [maxZoom]="18" [zoom]="14" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
+    <agm-marker [latitude]="latitudCutonala" [longitude]="longitudCutonala" 
     [iconUrl]="cut"
-    ></agm-marker>
+    >
+       <agm-info-window #window [disableAutoPan]="true" >
+     <p><b>Bienvenido al Cutonala</b></p>
+    </agm-info-window>
+    </agm-marker>
 
   <agm-marker *ngFor="let camion of camiones"
   	 [latitude]="camion.lat" [longitude]="camion.lng" 
     [iconUrl]="icon"
-    (markerClick)="infomarket(camion)"></agm-marker>
+    (markerClick)="infomarket(camion)"
+    (markerClick)="window.open()"  (mapClick)="placeMarker($event)">
+      
+      <agm-info-window #window [disableAutoPan]="true" >
+     <p>Distancia al cut <br><b>Aprox. {{camion.km}}</b></p>
+    </agm-info-window>
+
+
+    </agm-marker>
+
 </agm-map>
 <div class="row">
   <ion-col></ion-col>
@@ -28,7 +41,7 @@
 <div style="position: relative;top:-7em;">
   <div *ngIf="!modelo" text-center style="position:relative;top:-1em;">
     <span style="color:#17202F;font-size:.9em;">¡Hola!</span>
-    <h4>{{nombre_user}}</h4>
+    <h4>{{nombre_usuario}}</h4>
     <p ><strong>haz click en el icono para saber su información.</strong></p>
   </div>
   <div *ngIf="modelo"text-center>

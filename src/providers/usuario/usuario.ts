@@ -9,11 +9,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class UsuarioProvider {
   clave:string;
   user:any = {};
-
-
-  codigo = "214426868";
   
-
   constructor(private db: AngularFirestore,
               private platform: Platform,
               private storage: Storage,

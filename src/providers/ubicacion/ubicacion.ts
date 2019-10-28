@@ -13,7 +13,7 @@ export class UbicacionProvider {
      posOptions = {
              enableHighAccuracy: true,
              timeout:2500,
-             maximumAge: 4000
+             maximumAge: 4750
          };  
 
   constructor( private afDB: AngularFirestore,

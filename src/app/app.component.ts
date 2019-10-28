@@ -9,6 +9,7 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 
 
 import { FormPage } from '../pages/form/form';
+import { timer } from 'rxjs/observable/timer';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,6 +17,7 @@ import { FormPage } from '../pages/form/form';
 export class MyApp {
 
   rootPage:any;
+  showSplash = true;
 
   constructor(platform: Platform, 
               statusBar: StatusBar, 
@@ -25,8 +27,10 @@ export class MyApp {
       
       _usuarioProv.cargarStorage().then( existe => {
 
-        statusBar.styleDefault();
+        //statusBar.styleDefault();
+        statusBar.backgroundColorByHexString("#33000000");
         splashScreen.hide();
+        timer(2000).subscribe(() => this.showSplash = false)
 
         if ( existe ) {
           this.rootPage = HomePage;
