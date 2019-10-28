@@ -25,13 +25,12 @@ export class MyApp {
               public _usuarioProv: UsuarioProvider) {
     platform.ready().then(() => {
       
-      _usuarioProv.cargarStorage().then( existe => {
-
-        //statusBar.styleDefault();
         statusBar.backgroundColorByHexString("#33000000");
         splashScreen.hide();
-        timer(2000).subscribe(() => this.showSplash = false)
+        timer(2600).subscribe(() => this.showSplash = false)
 
+      _usuarioProv.cargarStorage().then( existe => {
+        //statusBar.styleDefault();
         if ( existe ) {
           this.rootPage = HomePage;
         }else {
