@@ -12,7 +12,7 @@ export class BackgroundPage {
  locations;
  config: BackgroundGeolocationConfig = {
             desiredAccuracy: 10,
-            stationaryRadius: 20,
+            stationaryRadius: 1,
             distanceFilter: 1,
             debug: true, //  Esto hace que el dispositivo emita sonidos cuando lanza un evento de localización
             stopOnTerminate: false, // Si pones este en verdadero, la aplicación dejará de trackear la localización cuando la app se haya cerrado.
