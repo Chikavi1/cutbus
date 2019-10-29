@@ -9,7 +9,7 @@ import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocati
   templateUrl: 'background.html',
 })
 export class BackgroundPage {
- locations;
+ locations = [];
  config: BackgroundGeolocationConfig = {
             desiredAccuracy: 10,
             stationaryRadius: 1,
@@ -19,12 +19,13 @@ export class BackgroundPage {
     };
   constructor(public navCtrl: NavController, public navParams: NavParams,
           private backgroundGeolocation: BackgroundGeolocation,private toastCtrl: ToastController) {
-  	this.locations  = [];
+  	
 
   	this.backgroundGeolocation.configure(this.config)
           .then(() => {
             this.backgroundGeolocation.on(BackgroundGeolocationEvents.location).subscribe((location: BackgroundGeolocationResponse) => {
               this.presentToast(location);
+              this.locations.push(location);
               console.log(location);
               // Es muy importante llamar al método finish() en algún momento para que se le notifique al sistema que hemos terminado y que libere lo que tenga que liberar,
               // Si no se hace, la aplicación dará error por problemas de memoria.
