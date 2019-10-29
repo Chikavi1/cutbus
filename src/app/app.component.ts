@@ -29,16 +29,11 @@ export class MyApp {
         splashScreen.hide();
         timer(2600).subscribe(() => this.showSplash = false)
 
-      _usuarioProv.cargarStorage().then( existe => {
-        //statusBar.styleDefault();
-        if ( existe ) {
+        if(localStorage.getItem("clave")){
           this.rootPage = BackgroundPage;
-        }else {
+        }else{
           this.rootPage = LoginPage;
         }
-
-      });
-
     });
   }
 }
