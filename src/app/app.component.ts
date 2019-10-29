@@ -8,7 +8,7 @@ import { LoginPage } from '../pages/login/login';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 
 
-import { FormPage } from '../pages/form/form';
+import { BackgroundPage } from '../pages/background/background';
 import { timer } from 'rxjs/observable/timer';
 
 @Component({
@@ -32,7 +32,7 @@ export class MyApp {
       _usuarioProv.cargarStorage().then( existe => {
         //statusBar.styleDefault();
         if ( existe ) {
-          this.rootPage = HomePage;
+          this.rootPage = BackgroundPage;
         }else {
           this.rootPage = LoginPage;
         }

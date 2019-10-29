@@ -3,7 +3,7 @@ import { NavController,NavParams,ModalController } from 'ionic-angular';
 import { UbicacionProvider } from '../../providers/ubicacion/ubicacion';
 import { Observable } from 'rxjs/Observable';
 import { FormPage } from '../form/form';
-
+import * as moment from 'moment';
 //import swal from 'sweetalert';
 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -42,11 +42,15 @@ export class RutaPage {
   valorboton = "";
   compartirubicacion;
 
+
+
   constructor(public navCtrl: NavController,
   			  public navparams:NavParams,
   			  public modalCtrl: ModalController,
   	 		  public _ubicacionProv: UbicacionProvider,
-  	 		  private geolocation: Geolocation  ) {
+  	 		  private geolocation: Geolocation ) {
+
+
 
   			//obtengo la ruta
   			this.ruta = this.navparams.get("ruta");
@@ -55,9 +59,11 @@ export class RutaPage {
 
   			//obtengo los camiones y los guardo en los camiones
       		this._ubicacionProv.obtenerCamiones().subscribe(data => {
- 			this.camiones = data.map(e => {
-		          //this.latitudInicial = e.payload.doc.data()['lat'];
-		          //this.longitudInicial = e.payload.doc.data()['lng'];
+
+
+ 			this.camiones = data.map(e => { 				
+		          this.latitudInicial = e.payload.doc.data()['lat'];
+		          this.longitudInicial = e.payload.doc.data()['lng'];
 		          return {
 		            id: e.payload.doc.id,
 		            nombre: e.payload.doc.data()['nombre'],
@@ -89,13 +95,11 @@ export class RutaPage {
 	      	if(localStorage.getItem("id_ubicacion"))
 	      	{
             	this._ubicacionProv.ubicacionTiempoReal();
+
  			}
 
   }
 
-ionViewDidLoad() {
-  
-  }
 
  changename(){
    	 //console.log(this.compartirubicacion)
@@ -121,9 +125,11 @@ ionViewDidLoad() {
 
  eliminarUbicacion(){
  	this._ubicacionProv.borrar_registro(localStorage.getItem("id_ubicacion"))
+
  	.then(resp=>{
 	 	console.log("se elimino el registro");
 	 	localStorage.removeItem("id_ubicacion");
+	 	localStorage.removeItem("hora_ubicacion");
 	 	this.compartirubicacion = false;
 	 	this.modelo = null;
 	  	this.nombre = null;
@@ -145,6 +151,10 @@ calculateDistance(lon1, lon2, lat1, lat2){
     let c = Math.cos;
     let a = 0.5 - c((lat1-lat2) * p) / 2 + c(lat2 * p) *c((lat1) * p) * (1 - c(((lon1- lon2) * p))) / 2;
     let dis = (12742 * Math.asin(Math.sqrt(a)));
+    console.log(dis);
+    if(dis < 0.35){
+    	this.eliminarUbicacion();
+    }
     return dis.toFixed(2);
 }
 

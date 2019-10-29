@@ -4,6 +4,8 @@ import { UbicacionProvider } from '../../providers/ubicacion/ubicacion';
 
 import swal from 'sweetalert';
 
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'page-form',
@@ -31,9 +33,8 @@ closeModal(){
 crear_usuario(modelo){
 
   	 let record = {};
-  	 let data = new Date();
-  	 let hora = this.tConvert(data.getHours()+":"+data.getMinutes());
-
+  	 let hora = moment().add(30,'minutes').format('HH:mm');
+     console.log(hora);
   	this._ubicacionProv.obtenerubicacion().then((resp) => {
 	     record['lat'] = resp.coords.latitude;
          record['lng'] = resp.coords.longitude;

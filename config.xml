@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
+<widget id="com.chikavi.cutbus" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>CutBus</name>
+    <description>App diseñada por Luis Rojas</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
@@ -17,9 +17,7 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    
-    <preference name="StatusBarBackgroundColor" value="#33000000"/>
-    
+    <preference name="StatusBarBackgroundColor" value="#33000000" />
     <preference name="FadeSplashScreenDuration" value="400" />
     <preference name="SplashScreenDelay" value="1500" />
     <preference name="AutoHideSplashScreen" value="false" />
@@ -112,4 +110,5 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>Necesitamos tu ubicación.</string>
     </edit-config>
+    <plugin name="cordova-plugin-background-geolocation" spec="@mauron85/cordova-plugin-background-geolocation@~3.1.0" />
 </widget>

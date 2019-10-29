@@ -13,7 +13,7 @@ export class UbicacionProvider {
      posOptions = {
              enableHighAccuracy: true,
              timeout:2500,
-             maximumAge: 4750
+             maximumAge: 6050
          };  
 
   constructor( private afDB: AngularFirestore,
@@ -30,6 +30,7 @@ export class UbicacionProvider {
   crear_usuario(record){
     return this.afDB.collection('usuarios/').add(record).then(function(docRef){
       localStorage.setItem("id_ubicacion",docRef.id);
+      localStorage.setItem("hora_ubicacion",record.horario);
     });
   }
 

@@ -12,7 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import {RutaPage} from '../pages/ruta/ruta';
 import { FormPage } from '../pages/form/form';
-
+import {BackgroundPage} from '../pages/background/background';
 
 //providers
  import { UsuarioProvider } from '../providers/usuario/usuario';
@@ -21,6 +21,7 @@ import { AgmCoreModule } from '@agm/core';
 
 // Plugins
 import { Geolocation } from '@ionic-native/geolocation';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
 
 // Firebase
@@ -44,7 +45,8 @@ import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
     HomePage,
     LoginPage,
     RutaPage,
-    FormPage
+    FormPage,
+    BackgroundPage
   ],
   imports: [
     BrowserModule,
@@ -66,13 +68,15 @@ import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
     HomePage,
     LoginPage,
     RutaPage,
-    FormPage
+    FormPage,
+    BackgroundPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsuarioProvider,
+    BackgroundGeolocation,
     UbicacionProvider,
     Geolocation
   ]
