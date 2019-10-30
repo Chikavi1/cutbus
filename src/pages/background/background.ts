@@ -12,10 +12,13 @@ export class BackgroundPage {
  locations = [];
  config: BackgroundGeolocationConfig = {
             desiredAccuracy: 10,
-            stationaryRadius: 1,
-            distanceFilter: 1,
+            stationaryRadius: 2,
+            distanceFilter: 2,
             debug: true, //  Esto hace que el dispositivo emita sonidos cuando lanza un evento de localización
             stopOnTerminate: false, // Si pones este en verdadero, la aplicación dejará de trackear la localización cuando la app se haya cerrado.
+   			notificationTitle: "Cutbus esta usando tu ubicacion",
+   			notificationText: "Recuerda borrar tu ubicacion",
+
     };
   constructor(public navCtrl: NavController, public navParams: NavParams,
           private backgroundGeolocation: BackgroundGeolocation,private toastCtrl: ToastController) {
