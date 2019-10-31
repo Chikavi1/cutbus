@@ -151,11 +151,7 @@ calculateDistance(lon1, lon2, lat1, lat2){
     let c = Math.cos;
     let a = 0.5 - c((lat1-lat2) * p) / 2 + c(lat2 * p) *c((lat1) * p) * (1 - c(((lon1- lon2) * p))) / 2;
     let dis = (12742 * Math.asin(Math.sqrt(a)));
-    console.log(dis);
-    if(dis < 0.35){
-    	this.eliminarUbicacion();
-    }
-    return dis.toFixed(2);
+        return dis.toFixed(2);
 }
 
 

@@ -37,6 +37,7 @@ import { HttpModule } from '@angular/http';
 
 import { firebaseConfig } from '../config/firebase.config';
 import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
+import { LocationProvider } from '../providers/location/location';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
     UsuarioProvider,
     BackgroundGeolocation,
     UbicacionProvider,
-    Geolocation
+    Geolocation,
+    LocationProvider
   ]
 })
 export class AppModule {}

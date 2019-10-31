@@ -2,6 +2,8 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,Slides,AlertController,LoadingController} from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { HomePage } from '../home/home';
+import { BackgroundPage } from '../background/background';
+
 import swal from 'sweetalert';
 
 
@@ -23,7 +25,7 @@ export class LoginPage {
   }
 
   ingresar(){
-    this.navCtrl.setRoot( HomePage );
+    this.navCtrl.setRoot( BackgroundPage );
   }
 
   login(){
