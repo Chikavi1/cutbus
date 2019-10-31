@@ -73,7 +73,7 @@ startTracking(){
 
     console.log('stopTracking');
 
-    this.backgroundGeolocation.finish();
+    this.backgroundGeolocation.stop();
     this.watch.unsubscribe();
 
   }
