@@ -11,6 +11,24 @@
 </ion-header>
 
 <ion-content padding>
+	<agm-map [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="11" [maxZoom]="18" [zoom]="14" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
+    <agm-marker [latitude]="latitudCutonala" [longitude]="longitudCutonala" 
+    [iconUrl]="cut"
+    >
+       <agm-info-window #window [disableAutoPan]="true" >
+     <p><b>Bienvenido al Cutonala</b></p>
+    </agm-info-window>
+    </agm-marker>
+
+  <agm-marker 
+  	 [latitude]="locationTracker.lat" [longitude]="locationTracker.lng" 
+    [iconUrl]="icon"
+    >
+    </agm-marker>
+
+</agm-map>
+
+
   <h3>Current Latitude: {{locationTracker.lat}}</h3>
   <h3>Current Longitude: {{locationTracker.lng}}</h3>
   <button ion-button full primary (click)="start()">Start Tracking</button>

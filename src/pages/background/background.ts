@@ -9,6 +9,12 @@ import { LocationProvider } from '../../providers/location/location';
   templateUrl: 'background.html',
 })
 export class BackgroundPage {
+  icon= "https://i.ibb.co/L16MJjx/icon-1.png";
+  cut = "https://i.ibb.co/7k0b3KP/CUT-Sin-Fondo-2.png";
+  latitudInicial:number = 20.620608;
+  longitudInicial:number = -103.305311;
+   latitudCutonala = 20.566187;
+  longitudCutonala = -103.226863;
  locations = [];
  // config: BackgroundGeolocationConfig = {
  //            desiredAccuracy: 10,
@@ -22,7 +28,8 @@ export class BackgroundPage {
  //    };
   constructor(public navCtrl: NavController, public navParams: NavParams,
           private toastCtrl: ToastController,public locationTracker: LocationProvider) {
-  	
+  	    
+ 
 
   	// this.backgroundGeolocation.configure(this.config)
    //        .then(() => {
