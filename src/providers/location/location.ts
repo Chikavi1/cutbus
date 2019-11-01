@@ -51,9 +51,9 @@ startTracking(){
 		    // Foreground Tracking
 
 		  let options = {
-		    frequency: 6000, 
+		    frequency: 12000, 
 		    enableHighAccuracy: true,
-		    maximumAge: 6000
+		    maximumAge: 12000
 		  };
 
 		  this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
