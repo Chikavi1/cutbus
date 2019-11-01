@@ -22,7 +22,7 @@ startTracking(){
       stationaryRadius: 2,
       distanceFilter: 2,
       debug: true,
-      interval: 2000,
+      interval: 6000,
       stopOnTerminate: false, // Si pones este en verdadero, la aplicación dejará de trackear la localización cuando la app se haya cerrado.
      notificationTitle: "Cutbus esta usando tu ubicacion",
      notificationText: "Recuerda borrar tu ubicacion"
@@ -51,7 +51,7 @@ startTracking(){
 		    // Foreground Tracking
 
 		  let options = {
-		    frequency: 3000, 
+		    frequency: 6000, 
 		    enableHighAccuracy: true
 		  };
 
