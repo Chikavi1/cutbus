@@ -9,7 +9,8 @@ export class LocationProvider {
   public watch: any;    
   public lat: number = 0;
   public lng: number = 0;
-
+  public countFor: number = 0;
+  public countBack: number = 0;
   constructor(public zone: NgZone,private backgroundGeolocation: BackgroundGeolocation,private geolocation: Geolocation) {
 
   }
@@ -37,6 +38,7 @@ startTracking(){
                this.zone.run(() => {
         		this.lat = location.latitude;
         		this.lng = location.longitude;
+        		this.countBack++;
       			});
 
               //this.backgroundGeolocation.finish(); // SOLO PARA IOS
@@ -64,6 +66,7 @@ startTracking(){
 		    this.zone.run(() => {
 		      this.lat = position.coords.latitude;
 		      this.lng = position.coords.longitude;
+		      this.countFor++;
 		    });
 
 		  });
@@ -76,6 +79,9 @@ startTracking(){
 
     this.backgroundGeolocation.stop();
     this.watch.unsubscribe();
+
+    this.countFor = 0;
+    this.countBack = 0;
 
   }
 
