@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import 'rxjs/add/operator/filter';
 import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationEvents, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
-
+import { debounceTime, map } from 'rxjs/operators';
 @Injectable()
 export class LocationProvider {
 
@@ -25,7 +25,7 @@ startTracking(){
       interval: 6000,
       stopOnTerminate: false, // Si pones este en verdadero, la aplicación dejará de trackear la localización cuando la app se haya cerrado.
      notificationTitle: "Cutbus esta usando tu ubicacion",
-     notificationText: "Recuerda borrar tu ubicacion"
+     notificationText: "Recuerda borrar tu ubicacion",
     };
 
 
@@ -56,7 +56,7 @@ startTracking(){
 		    maximumAge: 12000
 		  };
 
-		  this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
+		  this.watch = this.geolocation.watchPosition(options).pipe(debounceTime(6000)).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
 
 		    console.log(position);
 
