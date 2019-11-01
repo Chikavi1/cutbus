@@ -56,7 +56,7 @@ startTracking(){
 		    maximumAge: 12000
 		  };
 
-		  this.watch = this.geolocation.watchPosition(options).pipe(debounceTime(6000)).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
+		  this.watch = this.geolocation.watchPosition(options).pipe(debounceTime(7000)).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
 
 		    console.log(position);
 
