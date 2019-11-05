@@ -25,7 +25,9 @@ export class MyApp {
               public _usuarioProv: UsuarioProvider) {
     platform.ready().then(() => {
       
-        statusBar.backgroundColorByHexString("#33000000");
+        if (platform.is('android')) {
+            statusBar.backgroundColorByHexString("#33000000");
+          }
         splashScreen.hide();
         timer(2600).subscribe(() => this.showSplash = false)
 
