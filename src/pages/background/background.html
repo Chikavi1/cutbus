@@ -1,16 +1,9 @@
-<!--
-  Generated template for the BackgroundPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>background</ion-title>
+<ion-header translucent="true" no-border>
+  <ion-navbar color=‘light’ transparent >
+    <ion-title><span  style="color:#17202F !important;">Camiones </span></ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
+<ion-content fullscreen style="position: relative;top:-4.5em;">
 	<agm-map [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="11" [maxZoom]="18" [zoom]="14" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
     <agm-marker [latitude]="latitudCutonala" [longitude]="longitudCutonala" 
     [iconUrl]="cut"
