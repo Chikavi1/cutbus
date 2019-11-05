@@ -4,7 +4,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content fullscreen style="position: relative;top:-4.5em;">
-	<agm-map [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="11" [maxZoom]="18" [zoom]="14" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
+	<agm-map [styles]="styles" [disableDefaultUI]="false"
+ [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="11" [maxZoom]="18" [zoom]="14" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
     <agm-marker [latitude]="latitudCutonala" [longitude]="longitudCutonala" 
     [iconUrl]="cut"
     >
