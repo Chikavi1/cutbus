@@ -1,11 +1,8 @@
-<ion-header translucent="true" no-border>
-  <ion-navbar color=‘light’ transparent >
-    <ion-title><span  style="color:#17202F !important;">Camiones </span></ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content fullscreen style="position: relative;top:-4.5em;">
-	<agm-map [styles]="styles" [disableDefaultUI]="false"
- [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="11" [maxZoom]="18" [zoom]="14" style="position: relative;top:-4.5em;max-height: auto;" [streetViewControl]="false">
+
+
+<ion-content fullscreen style="z-index: 2;" >
+	<agm-map [styles]="styles" [disableDefaultUI]="false" [rotateControl]="true"
+ [latitude]="latitudInicial" [zoomControl]="false" [longitude]="longitudInicial" [minZoom]="11" [maxZoom]="18" [zoom]="14" style="position: relative;top:-5em;max-height: auto;" [streetViewControl]="false">
     <agm-marker [latitude]="latitudCutonala" [longitude]="longitudCutonala" 
     [iconUrl]="cut"
     >
@@ -23,11 +20,32 @@
 </agm-map>
 
 
-  <h3>Current Latitude: {{locationTracker.lat}}</h3>
-  <h3>Current Longitude: {{locationTracker.lng}}</h3>
-  <h3>fore count: {{locationTracker.countFor}}</h3>
-  <h3>back count: {{locationTracker.countBack}}</h3>
-  <button ion-button full primary (click)="start()">Start Tracking</button>
-  <button ion-button full primary (click)="stop()">Stop Tracking</button>
+    <div >
+  
+  <div text-center>
+  	<div style="width: 4em;height: 4px;background: #a0a0a0;top:-5em;left: 43%; !important;position: relative;" text-center></div>
+    <ion-row>
+       <ion-col>
+        <ion-icon name="person" style="zoom:2.32;"></ion-icon>
+        <p><strong>{{locationTracker.lat}}</strong></p>
+      </ion-col>
 
+      <ion-col>
+        <ion-icon name="bus" style="zoom:2.32;"></ion-icon>
+        <p><strong>{{locationTracker.lng}}</strong></p>
+      </ion-col>
+
+      <ion-col>
+        <ion-icon name="time" style="zoom:2.32;"></ion-icon>
+        <p><strong>{{locationTracker.countFor}}</strong></p>
+      </ion-col>
+    </ion-row>
+  
+  </div>
+</div>
+
+  <button ion-button full primary (click)="start()">Compartir ubicacion</button>
+  <button ion-button full primary (click)="stop()">Parar Ubicacion</button>
+
+  <p style="position: relative;top:-1.5em;color:red;" >Reportar</p>
 </ion-content>
