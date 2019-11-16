@@ -20,10 +20,10 @@ startTracking(){
 
     let config: BackgroundGeolocationConfig = {
       desiredAccuracy: 10,
-      stationaryRadius: 6,
-      distanceFilter: 6,
+      stationaryRadius: 70,
+      distanceFilter: 70,
       debug: true,
-      interval: 6000,
+      interval: 10000,
       stopOnTerminate: false, // Si pones este en verdadero, la aplicación dejará de trackear la localización cuando la app se haya cerrado.
      notificationTitle: "Cutbus esta usando tu ubicacion",
      notificationText: "Recuerda borrar tu ubicacion",
