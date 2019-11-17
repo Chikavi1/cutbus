@@ -20,8 +20,8 @@ startTracking(){
 
     let config: BackgroundGeolocationConfig = {
       desiredAccuracy: 10,
-      stationaryRadius: 70,
-      distanceFilter: 70,
+      stationaryRadius: 2,
+      distanceFilter: 2,
       debug: true,
       interval: 10000,
       stopOnTerminate: false, // Si pones este en verdadero, la aplicación dejará de trackear la localización cuando la app se haya cerrado.
@@ -53,9 +53,9 @@ startTracking(){
 		    // Foreground Tracking
 
 		  let options = {
-		    frequency: 12000, 
+		    frequency: 6000, 
 		    enableHighAccuracy: true,
-		    maximumAge: 12000
+		    maximumAge: 6000
 		  };
 
 		  this.watch = this.geolocation.watchPosition(options).pipe(debounceTime(5200)).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {

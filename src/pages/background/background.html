@@ -24,7 +24,7 @@
   
   <div text-center>
   	<div style="width: 4em;height: 4px;background: #a0a0a0;top:-5em;left: 43%;position: relative;" text-center></div>
-  	 <h4 style="top:-3em;position: relative;">¡Hola, Luis Rojas!</h4>
+  	 <h4 style="top:-3em;position: relative;">¡Hola, {{nombre}}!</h4>
     <ion-row>
        <ion-col>
         <ion-icon name="person" style="zoom:2.32;"></ion-icon>
@@ -38,15 +38,26 @@
 
       <ion-col>
         <ion-icon name="time" style="zoom:2.32;"></ion-icon>
-        <p><strong>{{locationTracker.countFor}}</strong></p>
+        <p><strong></strong></p>
       </ion-col>
     </ion-row>
-  
+  <p>foreground {{locationTracker.countFor}}</p>
+  <p>background {{locationTracker.countBack}}</p>
   </div>
 </div>
 
-  <button ion-button full primary (click)="start()">Compartir ubicacion</button>
-  <button ion-button full primary (click)="stop()">Parar Ubicacion</button>
-
-  <p style="position: relative;top:-1.5em;color:red;" >Reportar</p>
+<ion-row>
+  <ion-col>
+      <button ion-button full primary (click)="start()">Compartir ubicacion</button>
+  </ion-col>
+  <ion-col>
+      <button ion-button full primary (click)="stop()">Parar Ubicacion</button>
+  </ion-col>
+</ion-row>
+  
+  <ion-row padding >
+        <ion-col>
+            <p style="color:red;text-align: center !important;" >Reportar</p>
+        </ion-col>
+  </ion-row>
 </ion-content>
