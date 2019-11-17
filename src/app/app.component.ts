@@ -32,7 +32,7 @@ export class MyApp {
         timer(2600).subscribe(() => this.showSplash = false)
 
         if(localStorage.getItem("clave")){
-          this.rootPage = BackgroundPage;
+          this.rootPage = HomePage;
         }else{
           this.rootPage = LoginPage;
         }

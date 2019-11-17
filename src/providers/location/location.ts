@@ -3,6 +3,9 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import 'rxjs/add/operator/filter';
 import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationEvents, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 import { debounceTime, map } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+
+
 @Injectable()
 export class LocationProvider {
 
@@ -11,7 +14,7 @@ export class LocationProvider {
   public lng: number = 0;
   public countFor: number = 0;
   public countBack: number = 0;
-  constructor(public zone: NgZone,private backgroundGeolocation: BackgroundGeolocation,private geolocation: Geolocation) {
+  constructor(public zone: NgZone,private afDB: AngularFirestore,private backgroundGeolocation: BackgroundGeolocation,private geolocation: Geolocation) {
 
   }
 startTracking(){
@@ -20,8 +23,8 @@ startTracking(){
 
     let config: BackgroundGeolocationConfig = {
       desiredAccuracy: 10,
-      stationaryRadius: 2,
-      distanceFilter: 2,
+      stationaryRadius: 70,
+      distanceFilter: 70,
       debug: true,
       interval: 10000,
       stopOnTerminate: false, // Si pones este en verdadero, la aplicación dejará de trackear la localización cuando la app se haya cerrado.
@@ -68,6 +71,8 @@ startTracking(){
 		      this.lng = position.coords.longitude;
 		      this.countFor++;
 		    });
+
+       
 
 		  });
 
